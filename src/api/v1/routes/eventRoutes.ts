@@ -1,15 +1,11 @@
 import { Router } from "express";
 import { createEventSchema } from "../validation/eventValidation";
 import { validate } from "../middleware/validate";
+import { createEventHandler } from "../controllers/eventController";
 
 const router = Router();
 
-router.post("/", validate(createEventSchema), (req, res) => {
-  res.status(201).json({
-    message: "Event created",
-    data: req.body
-  });
-});
+router.post("/", validate(createEventSchema), createEventHandler);
 
 router.get("/", (req, res) => {
   res.status(200).json({
