@@ -1,7 +1,10 @@
 import { Router } from "express";
 import { createEventSchema } from "../validation/eventValidation";
 import { validate } from "../middleware/validate";
-import { createEventHandler, getAllEventsHandler } from "../controllers/eventController";
+import {
+  createEventHandler,
+  getAllEventsHandler,
+} from "../controllers/eventController";
 
 const router = Router();
 
