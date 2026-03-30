@@ -2,10 +2,22 @@ import express from "express";
 import eventRoutes from "./api/v1/routes/eventRoutes";
 import { getHelmetConfig } from "../config/helmetConfig";
 import cors from "cors";
+import setupSwagger from "../config/swagger";
 
 const app = express();
 
 app.use(express.json());
+
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  })
+);
+
+app.use(getHelmetConfig());
+
+setupSwagger(app);
 
 app.get("/api/v1/health", (req, res) => {
   res.status(200).json({
@@ -17,7 +29,5 @@ app.get("/api/v1/health", (req, res) => {
 });
 
 app.use("/api/v1/events", eventRoutes);
-app.use(getHelmetConfig());
-app.use(cors());
 
 export default app;
