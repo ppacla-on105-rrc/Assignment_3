@@ -22,20 +22,14 @@ const router = Router();
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             properties:
- *               name:
- *                 type: string
- *                 example: Basketball Tournament
- *               date:
- *                 type: string
- *                 example: 2026-04-10
- *               location:
- *                 type: string
- *                 example: Winnipeg
+ *             $ref: '#/components/schemas/EventInput'
  *     responses:
  *       201:
  *         description: Event created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Event'
  *       400:
  *         description: Invalid request data
  */
@@ -50,6 +44,12 @@ router.post("/", validate(createEventSchema), createEventHandler);
  *     responses:
  *       200:
  *         description: List of all events
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Event'
  */
 router.get("/", getAllEventsHandler);
 
@@ -69,6 +69,10 @@ router.get("/", getAllEventsHandler);
  *     responses:
  *       200:
  *         description: Event found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Event'
  *       404:
  *         description: Event not found
  */
@@ -92,20 +96,14 @@ router.get("/:id", getEventByIdHandler);
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             properties:
- *               name:
- *                 type: string
- *                 example: Updated Basketball Tournament
- *               date:
- *                 type: string
- *                 example: 2026-04-15
- *               location:
- *                 type: string
- *                 example: Brandon
+ *             $ref: '#/components/schemas/EventInput'
  *     responses:
  *       200:
  *         description: Event updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Event'
  *       404:
  *         description: Event not found
  */
