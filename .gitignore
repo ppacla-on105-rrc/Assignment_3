@@ -3,3 +3,4 @@ dist/
 firebase-service-account.json
 .env
 openapi.json
+!docs/openapi.json
