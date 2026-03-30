@@ -1,5 +1,6 @@
 import express from "express";
 import eventRoutes from "./api/v1/routes/eventRoutes";
+import { getHelmetConfig } from "../config/helmetConfig";
 
 const app = express();
 
@@ -15,5 +16,6 @@ app.get("/api/v1/health", (req, res) => {
 });
 
 app.use("/api/v1/events", eventRoutes);
+app.use(getHelmetConfig());
 
 export default app;
